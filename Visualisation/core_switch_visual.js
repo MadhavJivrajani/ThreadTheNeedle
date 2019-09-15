@@ -133,7 +133,3 @@ function draw(){
     }
 
 }
-
-
-var myArray = new Array(3);
-for(i=0;i<)
