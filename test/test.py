@@ -9,10 +9,14 @@ from datetime import datetime as dt
 import time
 
 def extract_data(pid):
+
     system("sudo perf stat -o "+str(pid)+".txt -e dTLB-load-misses,iTLB-load-misses -I 1000 -p "+str(pid))
 
 def process_data(pid):
 
+    import time
+
+    time.sleep(4)
     data = []
     time = []
     itlb_misses = []
@@ -46,7 +50,9 @@ def display_data(x_data, y_data):
 	plt.xlabel("Time elapsed in seconds",fontsize=13)
 	plt.ylabel("dTLB Misses",fontsize=13)
 	
-	plt.show()
+	plt.draw()
+	
+	plt.pause(0.1)
 	
 
 
