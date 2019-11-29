@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <style>
+        * {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    background-color: hsla(0, 7%, 81%, 0.761);
+    padding-bottom: 20px;
+}
+
+.header {
+
+    padding: 20px;
+    font-size: 2rem;
+    background-color: hsla(300, 100%, 25%, 0.938);
+    text-align: center;
+    margin-bottom: 20px;
+
+}
+
+.form {
+    display: inline-block;
+    background-color: hsla(300, 76%, 37%, 0.685);
+    margin: 20px;
+    padding: 5px;
+    border-radius: 10px;
+    margin-left: 50%;
+    transform: translateX(-50%);
+}
+
+#pid, #rr {
+    margin: 5px;
+    font-size: 1.2rem;
+    float: left;
+    background-color: #18adade3;
+    outline: none;
+    border: none;
+    border-radius: 10px;
+    padding: 10px;
+}
+#pid {
+    margin-left: 20px;
+}
+
+#pidlabel {
+    margin-left: 55px;
+}
+
+#rrlabel {
+    margin-left: 55px;
+}
+
+label {
+    font-size: 1.2rem;
+    margin: 15px;
+    float: left;
+}
+
+.pidSubmit {
+    margin: 8px;
+    float: left;
+    background-color: grey;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 1.2rem;
+}
+
+.content {
+    margin: 10px;
+    padding: 10px;    
+    display: flex;
+}
+
+.static_content {
+
+    border: 1px solid purple;
+    background-color: rgba(128, 0, 128, 0.219);
+    padding: 50px;
+    flex-grow: 1;
+    border-radius: 20px;
+    min-height: 300px;
+
+}
+
+.static__header {
+    font-size: 1.2rem;
+    background-color: #8000809f;
+    text-align: center;
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.dynamic_content {
+
+    flex-grow: 1;
+    padding: 50px;
+    border-radius: 20px;
+    border: 1px solid purple;
+    background-color: rgba(128, 0, 128, 0.219);
+    margin-left: 20px;
+    min-height: 300px;
+}
+
+.dynamic__header {
+    font-size: 1.2rem;
+    background-color: #8000809f;
+    text-align: center;
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.item__field {
+
+    padding: 2px;
+    min-width: 150;
+    text-align: center;
+
+}
+
+.static_item {
+
+    background-color: hsla(175, 94%, 50%, 0.301);
+    padding: 10px 1px;
+    display: flex;
+    border-radius: 10px;
+    margin-bottom: -5px;
+}
+
+.dynamic_item {
+
+    background-color: hsla(175, 94%, 50%, 0.301);
+    padding: 10px 1px;
+    display: flex;
+    border-radius: 10px;
+    margin-bottom: -5px;
+
+}
+
+.thread {
+    flex-grow: 1;
+}
+
+.name {
+    flex-grow: 1;
+}
+
+.usage {
+    flex-grow: 1;
+}
+
+.hops {
+    flex-grow: 1;
+}
+
+.button {
+
+    margin-left: 12%;
+    transform: translateX(-50%);
+    background-color: grey;
+    display: inline-block;
+    padding: 20px;
+    border-radius: 20px;
+    font-size: 1.5rem;
+    
+}
+
+.update {
+    margin-left: 25%;
+}
+
+.active {
+    background-color: #29dd29;
+}
+    </style>
+
+
+    <!-- Import jQuery -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+
+    <title>Mini Project</title>
+</head>
+<body>
+
+    <div class="header">
+        Performance Debugging tool
+    </div>
+    
+    <div class="form">
+
+        <label id="pidlabel" for="pid">Enter Process ID:</label>
+        <input id="pid" type="text" placeholder="Ex: 1920">
+        
+        <label id="rrlabel" for="rr">Enter Refresh Rate:</label>
+        <input id="rr" type="text" placeholder="Ex: 0.1(in seconds)">
+
+        <div class="pidSubmit">
+            Start Process
+        </div>
+
+    </div>
+
+    
+
+    <div class="content">
+        <div class="static_content">
+
+            <div class="static__header">
+                Select Thread ID
+            </div>
+
+            <div class="static_item">
+
+                <div class="thread item__field">
+                    Thread ID
+                </div>
+                <div class="name item__field">
+                    Thread Name
+                </div>
+                <div class="usage item__field">
+                    CPU Usage
+                </div>
+
+                <div class="hops item__field">
+                    Hops
+                </div>
+                
+            </div>
+
+        </div>
+        
+        <div class="dynamic_content">
+
+            <div class="dynamic__header">
+                Running thread IDs
+            </div>
+
+
+            <div class="dynamic_item">
+
+                <div class="thread item__field">
+                    Thread ID
+                </div>
+                <div class="name item__field">
+                    Thread Name
+                </div>
+                <div class="usage item__field">
+                    CPU Usage
+                </div>
+
+                <div class="hops item__field">
+                    Hops
+                </div>
+                
+            </div>
+
+    
+        </div>
+    </div>
+
+    <div class="button start">
+        Start Thread
+    </div>
+
+    <div class="button end">
+        End Thread
+    </div>
+
+    <div class="button update">
+        Update Threads
+    </div>
+
+    <script>
+
+        var selectThreads = []
+        var runningThreads = []
+        var activePID = null;
+        var selectedThread = null;
+        var selectedElement = null;
+        var activeThread = null;
+
+        function updatePID(pid) {
+            activePID = pid;
+        }
+
+        function startProcess() {
+            $.ajax({
+                type: 'POST',
+                url: '/startprocess',
+                data: activePID,
+                success: function(data) {
+                    console.log(data);
+                },
+            });
+        }
+
+        function endProcess() {
+            // send a request to stop running the process
+
+            $.ajax({
+                type: 'POST',
+                url: '/endprocess',
+                data: activePID,
+                success: function(data) {
+                    console.log(data);
+                },
+            });
+        }
+
+        function updateActive() {
+
+            activeThread = selectedThread;
+            selectedThread = null;
+
+            main();
+        }
+
+        function updateRunning() {
+
+
+            function update(data) {
+
+                runningThreads = data["data"]
+
+                if (activePID != null) {
+
+                    // send a request to get data
+                    var parent = document.querySelector(".dynamic_content");
+
+                    var child = parent.lastElementChild;
+
+                    while (child) {
+                        parent.removeChild(child);
+                        child = parent.lastElementChild;
+                    }
+
+                    var text = "<div class=\"dynamic__header\">Running Thread IDs</div>";
+                    parent.innerHTML += text;
+
+                    text = "<div class=\"dynamic_item\"><div class=\"thread item__field\">Thread ID</div><div class=\"name item__field\">Thread Name</div><div class=\"usage item__field\">CPU Usage</div><div class=\"hops item__field\">Hops</div></div>";
+                    parent.innerHTML += text;
+
+                    for (i = 0; i < runningThreads.length; i++) {
+
+                        text = "<div class=\"dynamic_item\"><div class=\"thread item__field\">" + runningThreads[i][0] + "</div><div class=\"name item__field\">" + runningThreads[i][2] + "</div><div class=\"usage item__field\">" + runningThreads[i][1] + "</div><div class=\"hops item__field\">" + runningThreads[i][3] + "</div></div>";
+                        parent.innerHTML += text;
+
+                    }
+
+                }
+
+                main();
+
+            }
+
+            if(activePID!=null) {
+                $.ajax({
+                    type: 'POST',
+                    url: '/getrunning',
+                    data: activePID,
+                    success: function(data) {
+                        update(data);
+                    },
+                });
+            }
+        }
+
+        function updateSelectThreads() {
+
+            selectThreads = runningThreads;
+
+            var parent = document.querySelector(".static_content");
+
+            var child = parent.lastElementChild;
+
+            while (child) {
+                parent.removeChild(child);
+                child = parent.lastElementChild;
+            }
+
+            var text = "<div class=\"static__header\">Select Thread ID</div>";
+            parent.innerHTML += text;
+
+            text = "<div class=\"static_item\"><div class=\"thread item__field\">Thread ID</div><div class=\"name item__field\">Thread Name</div><div class=\"usage item__field\">CPU Usage</div><div class=\"hops item__field\">Hops</div></div>";
+            parent.innerHTML += text;
+
+            console.log(selectedThread);
+
+            for (i = 0; i < selectThreads.length; i++) {
+
+                text = "<div class=\"static_item\"><div class=\"thread item__field\">" + selectThreads[i][0] + "</div><div class=\"name item__field\">" + selectThreads[i][2] + "</div><div class=\"usage item__field\">" + selectThreads[i][1] + "</div><div class=\"hops item__field\">" + runningThreads[i][3] + "</div></div>";
+                parent.innerHTML += text;
+
+            }
+
+            main();
+
+        }
+
+        function updateSelectedElement(ele) {
+
+            selectedElement = ele;
+
+            selectedThread = ele.firstElementChild.innerHTML;
+
+        }
+
+        function startThread() {
+
+            // SEND REQUEST TO start executing the thread plots
+
+            selectedElement.className = "static_item";
+            selectedElement = null;
+            selectedThread = null;
+            var rr = document.querySelector("#rr").value
+            $.ajax({
+                type: 'POST',
+                url: '/startthread',
+                data: JSON.stringify({"data":activePID, 'rr': rr,}),
+                contentType: 'application/json;charset=UTF-8',
+                success: function(data) {
+                    console.log(data);
+                },
+            });
+
+        }
+
+        function endThread() {
+
+            // send request to stop executing the thread plots (check = 0)
+
+            $.ajax({
+                type: 'POST',
+                url: '/endthread',
+                data: activeThread,
+                success: function(data) {
+                    console.log(data);
+                },
+            });
+
+            activeThread = null;
+
+            main();
+
+        }
+
+        function main() {
+
+            var processButton = document.querySelector(".pidSubmit");
+            processButton.addEventListener('mousedown', function (e) {
+
+                var pid = document.querySelector("#pid").value;
+                if(activePID==null){
+                    updatePID(pid);
+                    startProcess();
+                }
+                
+
+            }, true);
+
+            var startButton = document.querySelector(".start");
+            startButton.addEventListener('click', function () {
+
+                if (selectedThread != null && activeThread == null) {
+                    updateActive(selectedThread);
+                    startThread();
+                }
+
+            });
+
+            var endButton = document.querySelector(".end");
+            endButton.addEventListener('click', function () {
+
+                if (activeThread == null) {
+                    
+                } else {
+                    endThread();
+                }
+            });
+
+            var updateButton = document.querySelector(".update");
+            updateButton.addEventListener("click", function () {
+
+                updateSelectThreads();
+
+            });
+
+            var threadSelect = document.querySelectorAll(".static_item");
+            for (var i = 0; i < threadSelect.length; i++) {
+                threadSelect[i].addEventListener("click", function () {
+                    console.log("HERE");
+                    if (activeThread == null) {
+
+                        if (selectedElement == null) {
+                            this.className += " active";
+                        } else {
+                            var temp = document.querySelector(".active");
+                            temp.className = "static_item";
+                            this.className += " active";
+                        }
+
+                        updateSelectedElement(this);
+
+                    }
+
+                });
+            }
+
+        }
+
+        setInterval(updateRunning, 5000);
+
+        main()
+    </script>
+    
+</body>
+</html>
