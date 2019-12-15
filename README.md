@@ -16,17 +16,17 @@ Dependencies:
 * `TIME+` 
 * `P`
 
-#### To install `perf`:   
-`sudo apt install linux-tools-$(uname -r) linux-tools-generic`  
-
-
-
 #### To enable/disable columns, do the following:
 * Run the `top` command
 * While it's running, press `f`
 * Select/unselect columns by pressing `d`
 * Once done selecting/unselecting press `q`
 * To save the changes, press `shift + w`
+
+
+#### To install `perf`:   
+`sudo apt install linux-tools-$(uname -r) linux-tools-generic`    
+
 
 ### How to run the tools  
 The method specified below works for `tool1` and `tool2`:     
